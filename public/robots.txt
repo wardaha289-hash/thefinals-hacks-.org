@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /images/
+Disallow: /brand-studio/
+Disallow: /brand-studio
+Disallow: /__brand/
+Disallow: /__brand
+
+# Primary sitemap index — pages, products, blogs (forum), and images.
+Sitemap: https://thefinalshacks.org/sitemap.xml

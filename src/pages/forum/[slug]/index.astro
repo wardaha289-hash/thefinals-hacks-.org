@@ -1,0 +1,16 @@
+---
+import ForumThreadPage from '../../../components/ForumThreadPage.astro';
+import { forumThreads, getThreadBySlug } from '../../../data/forum/helpers';
+
+export function getStaticPaths() {
+	return forumThreads.map((thread) => ({
+		params: { slug: thread.slug },
+		props: { thread: getThreadBySlug(thread.slug)! },
+	}));
+}
+
+const { thread } = Astro.props;
+const live = getThreadBySlug(thread.slug) ?? thread;
+---
+
+<ForumThreadPage thread={live} />

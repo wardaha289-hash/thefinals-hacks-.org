@@ -1,0 +1,16 @@
+---
+import { blogPosts } from '../../../data/blog/helpers';
+import { forumThreads } from '../../../data/forum/helpers';
+
+export function getStaticPaths() {
+	return blogPosts.map((post) => ({
+		params: { slug: post.translations.en.slug },
+	}));
+}
+
+const { slug } = Astro.params;
+const match = forumThreads.find((thread) => thread.slug === slug);
+const target = match ? `/forum/${match.slug}/` : '/forum/';
+
+return Astro.redirect(target, 301);
+---

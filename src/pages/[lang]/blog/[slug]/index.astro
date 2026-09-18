@@ -1,0 +1,33 @@
+---
+/**
+ * Locale blog posts — 301 to the English forum.
+ */
+import { blogPosts } from '../../../../data/blog/helpers';
+import { defaultLocale, isLocaleCode, localeCodes, type LocaleCode } from '../../../../data/i18n/locales';
+
+export function getStaticPaths() {
+	const paths: {
+		params: { lang: string; slug: string };
+		props: { locale: LocaleCode };
+	}[] = [];
+
+	for (const locale of localeCodes) {
+		if (locale === defaultLocale) continue;
+		for (const post of blogPosts) {
+			const slug = post.translations[locale].slug;
+			paths.push({
+				params: { lang: locale, slug },
+				props: { locale },
+			});
+		}
+	}
+
+	return paths;
+}
+
+if (!isLocaleCode(Astro.params.lang ?? '')) {
+	return Astro.redirect('/forum/', 301);
+}
+
+return Astro.redirect('/forum/', 301);
+---

@@ -1,0 +1,42 @@
+/** Descriptive image alts — Google rejects empty or keyword-only alts. */
+export const DESCRIPTIVE_IMAGE_ALTS = {
+	hero: 'THE FINALS Hacks hero — ESP and aimbot overlay in THE FINALS',
+	espWallhack: 'Wallhack outlines showing players and teams through walls',
+	aimbotCombat: 'Soft aim assist overlay during an THE FINALS raid',
+	squadFight: 'THE FINALS Hacks combat overlay during a squad fight',
+	playerEsp: 'Player ESP boxes and distance readouts in a THE FINALS raid',
+	headerArt: 'Aimbot view and bone priority controls for THE FINALS',
+	cheatsPackage: '2D radar threat overlay for THE FINALS',
+	rebootFight: 'Aimbot assist during a THE FINALS firefight',
+	battleRoyale: 'THE FINALS Hacks in-raid overview for Windows PC',
+	battleRoyaleIsland: 'ESP markers for loot and extracts in THE FINALS',
+};
+
+/** Page-level image alt by pageId (EN source of truth). */
+export const PAGE_IMAGE_ALTS = {
+	home: 'THE FINALS Hacks homepage hero — ESP and aimbot for THE FINALS',
+	'finals-esp': 'THE FINALS ESP player boxes and distance readouts in a match',
+	'finals-aimbot': 'THE FINALS aimbot and soft aim controls on Windows PC',
+	features: 'THE FINALS Hacks features — ESP, soft aim, and radar screenshots',
+	pricing: 'THE FINALS Hacks store plans for monthly and lifetime licenses',
+	setup: 'THE FINALS Hacks setup guide screenshot for Windows PC',
+	updates: 'THE FINALS Hacks live status after Easy Anti-Cheat and game patches',
+	faq: 'THE FINALS Hacks FAQ — delivery, setup, and update answers',
+	support: 'THE FINALS Hacks support page for license and setup help',
+	undetected: 'THE FINALS Hacks undetected status overview for Windows PC',
+	wallhack: 'THE FINALS wallhack visibility through walls in a match',
+	radar: 'THE FINALS 2D radar overlay showing nearby threats',
+	eac: 'THE FINALS Hacks maintenance after a Easy Anti-Cheat patch',
+	'cheats-2026': 'THE FINALS Hacks product overview for THE FINALS',
+	hacks: 'THE FINALS Hacks product page — ESP, aimbot, and radar',
+	'cheat-download': 'THE FINALS Hacks download and install delivery flow',
+	'mod-menu': 'THE FINALS Hacks in-game menu controls',
+	'soft-aim': 'THE FINALS soft aim FOV and smoothness settings',
+	'best-cheats': 'THE FINALS Hacks overview for THE FINALS on PC',
+	'aimbot-hack': 'THE FINALS aimbot hack controls and bone priority',
+	'esp-hack': 'THE FINALS ESP hack boxes and loot markers',
+	'unlock-all': 'THE FINALS Hacks license features overview',
+	privacy: 'THE FINALS Hacks privacy policy page',
+	refund: 'THE FINALS Hacks refund policy page',
+	terms: 'THE FINALS Hacks terms of use page',
+};
