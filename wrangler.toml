@@ -1,7 +1,16 @@
-# CI Workers Builds project name (repo: finalscheats)
-name = "thefinalshacks"
+# CI Workers Builds project name (must match Cloudflare Workers Builds)
+name = "thefinals-hacks--org"
 compatibility_date = "2026-01-01"
 main = "src/worker.ts"
+
+# Attach apex + www to this Worker (Cloudflare creates/updates DNS + SSL)
+[[routes]]
+pattern = "thefinalshacks.org"
+custom_domain = true
+
+[[routes]]
+pattern = "www.thefinalshacks.org"
+custom_domain = true
 
 [assets]
 directory = "./dist"
