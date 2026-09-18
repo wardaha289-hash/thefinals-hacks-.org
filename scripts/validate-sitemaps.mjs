@@ -221,6 +221,14 @@ async function main() {
 		bump();
 	} else ok('_redirects 301s sitemap-index.xml → sitemap.xml');
 
+	const redirectRuleCount = redirects
+		.split('\n')
+		.filter((line) => line.trim() && !line.trim().startsWith('#')).length;
+	if (redirectRuleCount > 100) {
+		fail(`public/_redirects has ${redirectRuleCount} rules (Cloudflare limit is 100)`);
+		bump();
+	} else ok(`public/_redirects has ${redirectRuleCount} rules (within Cloudflare limit)`);
+
 	if (pagesLocs.length !== PAGES_SITEMAP_URLS) {
 		fail(`sitemap-pages.xml: expected ${PAGES_SITEMAP_URLS} URLs, got ${pagesLocs.length}`);
 		bump();

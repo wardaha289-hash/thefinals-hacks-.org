@@ -12,6 +12,7 @@ import { contentSrcSet, productMainSizes } from '../../lib/responsive-images';
 
 const title = seoPageTitle(brandSeo.reviewsTitle);
 const description = seoDescription(brandSeo.reviewsDescription);
+const reviewsHeroSrc = '/images/finals-hacks-match-preview.webp';
 const reviewsIntro = fillBrandTokens(brandCopy.reviewsIntro);
 
 function stars(rating: number): string {
@@ -75,8 +76,8 @@ const extraGraph: Record<string, unknown>[] = [
 
 			<figure class="reviews-index__media">
 				<img
-					src={defaultCrawlImageSrc}
-					srcset={contentSrcSet(defaultCrawlImageSrc)}
+					src={reviewsHeroSrc}
+					srcset={contentSrcSet(reviewsHeroSrc)}
 					sizes={productMainSizes}
 					alt={fillBrandTokens('{brand} customer reviews')}
 					width="1280"

@@ -108,18 +108,6 @@ function HomeSeoInner({ faqs, previewSrc, previewAlt }: Props) {
 				</div>
 			</section>
 
-			<section className="home-seo__buy" aria-labelledby="home-buy-title">
-				<h2 id="home-buy-title">{t('homeSeo.buyTitle')}</h2>
-				<p>{t('homeSeo.buyLede')}</p>
-				<ul className="home-seo__buy-links">
-					{buyLinks.map((link) => (
-						<li key={link.href}>
-							<a href={link.href}>{t(link.labelKey)}</a>
-						</li>
-					))}
-				</ul>
-			</section>
-
 			<section className="home-seo__faq" aria-labelledby="home-faq-title">
 				<header className="home-seo__faq-head">
 					<div>
@@ -146,6 +134,18 @@ function HomeSeoInner({ faqs, previewSrc, previewAlt }: Props) {
 						</details>
 					))}
 				</div>
+			</section>
+
+			<section className="home-seo__buy" aria-labelledby="home-buy-title">
+				<h2 id="home-buy-title">{t('homeSeo.buyTitle')}</h2>
+				<p>{t('homeSeo.buyLede')}</p>
+				<ul className="home-seo__buy-links">
+					{buyLinks.map((link) => (
+						<li key={link.href}>
+							<a href={link.href}>{t(link.labelKey)}</a>
+						</li>
+					))}
+				</ul>
 			</section>
 		</section>
 	);

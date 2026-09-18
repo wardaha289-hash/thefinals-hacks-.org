@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 /**
- * Syncs locale 301s for cannibal pageIds → pillar pageIds into public/_redirects
- * and functions/cannibal-redirects.json (used by Workers middleware).
- * Targets are read from src/data/seo-canonical.ts (single source of truth).
+ * Syncs locale 301s for cannibal pageIds → pillar pageIds into
+ * functions/cannibal-redirects.json (handled by src/worker.ts).
+ *
+ * Cloudflare Workers static assets allow at most 100 _redirects rules;
+ * cannibal locale pairs (~460) must not live in public/_redirects.
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
@@ -39,14 +41,18 @@ function extractSlugBlock(src, pageId) {
 	return slugs;
 }
 
+function stripCannibalRedirectsBlock(redirects) {
+	const markerStart = '# Auto-generated cannibal locale redirects';
+	const start = redirects.indexOf(markerStart);
+	if (start < 0) return redirects.trimEnd();
+	const lineStart = redirects.lastIndexOf('\n', start);
+	return redirects.slice(0, lineStart >= 0 ? lineStart : start).trimEnd();
+}
+
 const TARGETS = readCannibalTargets();
 const routing = readFileSync(ROUTING, 'utf8');
+/** @type {Record<string, string>} */
 const map = {};
-const lines = [
-	'',
-	'# Auto-generated cannibal locale redirects (scripts/sync-cannibal-redirects.mjs)',
-	'# Do not edit by hand — regenerated on sync:brand / prebuild',
-];
 
 for (const [fromId, toId] of Object.entries(TARGETS)) {
 	const fromSlugs = extractSlugBlock(routing, fromId);
@@ -59,22 +65,22 @@ for (const [fromId, toId] of Object.entries(TARGETS)) {
 		const toPath = `/${locale}/${toSlug}/`;
 		map[fromPath] = toPath;
 		map[`/${locale}/${fromSlug}`] = toPath;
-		lines.push(`${fromPath.slice(0, -1)} ${toPath} 301`);
-		lines.push(`${fromPath} ${toPath} 301`);
 	}
 }
 
-const markerStart = '# Auto-generated cannibal locale redirects';
-let redirects = readFileSync(REDIRECTS, 'utf8');
-const start = redirects.indexOf(markerStart);
-if (start >= 0) {
-	const lineStart = redirects.lastIndexOf('\n', start);
-	redirects = redirects.slice(0, lineStart >= 0 ? lineStart : start).trimEnd() + '\n';
-}
-
-redirects = `${redirects.trimEnd()}\n${lines.join('\n')}\n`;
-writeFileSync(REDIRECTS, redirects);
 writeFileSync(JSON_OUT, `${JSON.stringify(map, null, 2)}\n`);
+
+let redirects = stripCannibalRedirectsBlock(readFileSync(REDIRECTS, 'utf8'));
+const note = [
+	'',
+	'# Cannibal locale 301s (~460) live in functions/cannibal-redirects.json',
+	'# and are applied by src/worker.ts (Cloudflare _redirects limit is 100).',
+].join('\n');
+if (!redirects.includes('Cannibal locale 301s')) {
+	redirects = `${redirects}${note}`;
+}
+writeFileSync(REDIRECTS, `${redirects.trimEnd()}\n`);
+
 console.log(
-	`Synced ${Object.keys(map).length / 2} cannibal locale redirect pairs (${Object.keys(TARGETS).length} pageIds)`,
+	`Synced ${Object.keys(map).length} cannibal redirect paths (${Object.keys(TARGETS).length} pageIds) → functions/cannibal-redirects.json`,
 );

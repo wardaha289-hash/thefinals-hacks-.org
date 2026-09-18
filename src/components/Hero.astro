@@ -31,9 +31,9 @@ const locale = Astro.props.locale ?? defaultLocale;
 		--hero-pad-y: clamp(1rem, 2vw, 1.75rem);
 		--hero-stack: clamp(0.5rem, 1.1vw, 0.75rem);
 		/*
-		 * Match in-game preview art (~16:9).
+		 * Wide hero art (~2.5:1). Image stays undistorted via object-fit: cover.
 		 */
-		--hero-ratio: 16 / 9;
+		--hero-ratio: 3.15 / 1;
 		position: relative;
 		isolation: isolate;
 		display: grid;
@@ -64,7 +64,7 @@ const locale = Astro.props.locale ?? defaultLocale;
 		/* Cover = keep proportions; crop top/bottom of the shorter bar */
 		object-fit: cover;
 		/* Prefer a bit higher in the frame so the USEC head stays in view */
-		object-position: center 42%;
+		object-position: right 28%;
 		image-rendering: auto;
 		transform: translateZ(0);
 		animation: hero-in 0.9s ease-out both;
@@ -113,11 +113,12 @@ const locale = Astro.props.locale ?? defaultLocale;
 	.hero__brand {
 		margin: 0;
 		font-family: var(--font-sans);
-		font-size: clamp(2.1rem, 4.4vw, 3.25rem);
+		font-size: clamp(1.65rem, 3.8vw, 3rem);
 		font-weight: 700;
 		line-height: 1.12;
 		letter-spacing: -0.03em;
-		overflow-wrap: anywhere;
+		white-space: nowrap;
+		overflow-wrap: normal;
 		color: #fff;
 		width: 100%;
 		text-transform: uppercase;
@@ -326,7 +327,7 @@ const locale = Astro.props.locale ?? defaultLocale;
 		}
 
 		.hero__brand {
-			font-size: clamp(1.7rem, 7.5vw, 2.35rem);
+			font-size: clamp(1.35rem, 6.8vw, 2.35rem);
 			line-height: 1.08;
 		}
 
@@ -375,7 +376,7 @@ const locale = Astro.props.locale ?? defaultLocale;
 		}
 
 		.hero__brand {
-			font-size: clamp(1.55rem, 8.2vw, 1.95rem);
+			font-size: clamp(1.2rem, 7.2vw, 1.85rem);
 		}
 
 		.hero__lede {
@@ -398,7 +399,7 @@ const locale = Astro.props.locale ?? defaultLocale;
 		}
 
 		.hero__brand {
-			font-size: 1.45rem;
+			font-size: 1.15rem;
 		}
 
 		.hero__features {

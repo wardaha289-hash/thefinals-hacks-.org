@@ -46,8 +46,10 @@ const introEditByPage: Partial<Record<PageId, string>> = {
 	faq: 'faqIntro',
 };
 const introEdit = locale === 'en' ? introEditByPage[pageId] : undefined;
+const galleryLeadSrc =
+	pageId === 'updates' ? '/images/finals-hacks-aimbot.webp' : crawl.src;
 const gallery = [
-	{ src: crawl.src, alt: page.imageAlt || crawl.caption },
+	{ src: galleryLeadSrc, alt: page.imageAlt || crawl.caption },
 	...finalsImages.product.slice(0, 2).map((img) => ({
 		src: img.src,
 		alt: img.alt,
