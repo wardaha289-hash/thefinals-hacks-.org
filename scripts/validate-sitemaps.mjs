@@ -54,7 +54,15 @@ const IMAGE_SITEMAP_ENTRIES = countBrandSitemapImages();
 
 const BLOG_PAGES = 0;
 const FORUM_PAGES = 7; // /forum/ index + 6 threads
-const REVIEW_PAGES = 11; // /reviews/ index + 10 review detail pages
+function readReviewSlugs() {
+	const src = readFileSync(path.join(ROOT, 'src/data/customer-reviews.ts'), 'utf8');
+	return [...src.matchAll(/slug:\s*'((?:\\'|[^'])*)'/g)].map((m) =>
+		`/reviews/${m[1].replace(/\\'/g, "'")}/`,
+	);
+}
+
+const REVIEW_DETAIL_PATHS = readReviewSlugs();
+const REVIEW_PAGES = 1 + REVIEW_DETAIL_PATHS.length;
 const FAQ_PAGES = 11; // FAQ answer pages (index is in content pages)
 const CONTENT_PAGES = 8; // home, setup, updates, faq, support, privacy, refund, terms
 const PAGES_SITEMAP_URLS = CONTENT_PAGES + REVIEW_PAGES + FAQ_PAGES;
@@ -110,16 +118,7 @@ const ENGLISH_PATHS = [
 	'/forum/player-esp/',
 	'/forum/aimbot-settings/',
 	'/reviews/',
-	'/reviews/finals-soft-aim-review-xkrypt0/',
-	'/reviews/finals-esp-scav-run-review-buildsr4k/',
-	'/reviews/finals-cloud-dma-review-dma-wizard/',
-	'/reviews/finals-soft-aim-review-ctrl-player99/',
-	'/reviews/finals-cheat-setup-review-stormchaser07/',
-	'/reviews/finals-loot-esp-review-lootgoblinx/',
-	'/reviews/finals-soft-aim-raid-review-rankedgrind42/',
-	'/reviews/finals-radar-hack-review-vanlifeeft/',
-	'/reviews/finals-eac-update-review-patchdaymike/',
-	'/reviews/finals-sniper-soft-aim-review-snipezonly/',
+	...REVIEW_DETAIL_PATHS,
 	'/faq/what-are-the-finals-hacks/',
 	'/faq/are-the-finals-hacks-undetected-in-2026/',
 	'/faq/cashout-and-quick-cash-modes/',

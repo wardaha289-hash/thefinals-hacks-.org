@@ -2,7 +2,7 @@ import type { ForumThreadDefinition } from './types';
 
 const sharedWhatYouGet = {
 	paragraphs: [
-		'THE FINALS Hacks is one product for THE FINALS on Windows PC. You are buying a loader plus license with live / Updating status on thefinalshacks.org — not a random multi-game pack.',
+		'THE FINALS Hacks for THE FINALS on Windows PC. You get a loader plus license with live status on thefinalshacks.org.',
 		'Open the product page, confirm status, then checkout. Delivery is digital on supported builds.',
 	],
 };

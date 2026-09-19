@@ -3,7 +3,7 @@
  * Do not paste ROUTE_KEYWORDS into every page meta field; use per-route only.
  */
 export const SITE_PURPOSE =
-	'The Finals Hacks is a single-product site for THE FINALS: ESP, wallhack, radar, and related gameplay features with live patch status. We do not sell hacks for other games.';
+	'The Finals Hacks for THE FINALS on Windows PC — ESP, wallhack, radar, and related gameplay features with live patch status.';
 
 export const SITE_ABOUT = [
 	'The Finals Hacks',
@@ -26,8 +26,6 @@ export const ROUTE_KEYWORDS = {
 	reviews: ['The Finals Hacks reviews', 'the finals hacks review'],
 	product: ['buy The Finals Hacks', 'the finals ESP', 'the finals wallhack', 'the finals radar'],
 } as const;
-
-export const PRODUCT_SCHEMA_SCOPE = 'The Finals only — no other games.';
 
 export type HreflangPair = { hreflang: 'en' | 'x-default'; href: string };
 

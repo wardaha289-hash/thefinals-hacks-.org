@@ -20,7 +20,7 @@
 		"generate:brand": "node scripts/generate-brand-assets.mjs",
 		"preview": "astro preview",
 		"validate:sitemaps": "node scripts/validate-sitemaps.mjs && node scripts/audit-sitemap-deep.mjs",
-		"generate:i18n": "node scripts/generate-i18n-content.mjs",
+		"generate:reviews": "node scripts/generate-customer-reviews.mjs",
 		"deploy": "npm run build && wrangler deploy",
 		"pages:deploy": "wrangler pages deploy dist --project-name=thefinalshacks",
 		"astro": "astro"

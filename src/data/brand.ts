@@ -71,7 +71,7 @@ export const brand = {
 		/** Titles ≤60 chars; descriptions ~140–160 (Google SERP display). */
 		homeTitle: 'The Finals Hacks | ESP & Wallhack',
 		homeDescription:
-			'The Finals Hacks for THE FINALS on Windows PC — ESP, wallhack, and radar with live patch status. One product. No other games.',
+			'The Finals Hacks for THE FINALS on Windows PC — ESP, wallhack, and radar with live patch status.',
 		featuresTitle: '{game} Features | {brand}',
 		featuresDescription:
 			'Everything in one {game} license for Windows PC — ESP, wallhack, radar, loot tools, and patch updates after {antiCheat}. See what is included.',
@@ -108,7 +108,7 @@ export const brand = {
 	copy: {
 		tagline: ' ESP, wallhack, and radar for THE FINALS on Windows PC',
 		summary:
-			'The Finals Hacks is a single-product site for THE FINALS: ESP, wallhack, radar, and related gameplay features with live patch status. We do not sell hacks for other games.',
+			'The Finals Hacks for THE FINALS on Windows PC — ESP, wallhack, radar, and related gameplay features with live patch status.',
 		heroLede: ' ESP, soft aim, and radar for THE FINALS on Windows PC.',
 		blogLabel: 'THE FINALS Intel',
 		ctaBuy: 'Get Access',

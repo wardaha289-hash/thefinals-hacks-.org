@@ -12,6 +12,11 @@ export {
 } from './site-core';
 
 import { fillBrandTokens } from './brand';
+import {
+	customerReviewGeneratedStats,
+	customerReviewSeed,
+	type CustomerReviewSeed,
+} from './customer-reviews';
 
 function faq<T extends { question: string; answer: string; seoTitle: string; seoDescription: string }>(item: T): T {
 	return {
@@ -23,9 +28,13 @@ function faq<T extends { question: string; answer: string; seoTitle: string; seo
 	};
 }
 
-function reviewMeta<T extends { seoTitle: string; seoDescription: string }>(item: T): T {
+function reviewMeta<
+	T extends { seoTitle: string; seoDescription: string; text: string; short: string },
+>(item: T): T {
 	return {
 		...item,
+		text: fillBrandTokens(item.text),
+		short: fillBrandTokens(item.short),
 		seoTitle: fillBrandTokens(item.seoTitle),
 		seoDescription: fillBrandTokens(item.seoDescription),
 	};
@@ -200,130 +209,9 @@ export const seoFaqs: readonly FaqItem[] = [
 	}),
 ] as const;
 
-export type CustomerReview = {
-	handle: string;
-	rating: 3 | 4 | 5;
-	text: string;
-	short: string;
-	slug: string;
-	seoTitle: string;
-	seoDescription: string;
-	date: string;
-	tag?: string;
-};
+export type { CustomerReviewSeed };
+export type CustomerReview = CustomerReviewSeed;
 
-export const customerReviews = [
-	reviewMeta({
-		handle: 'xKrypt0_EFT',
-		rating: 5,
-		text: 'Soft aim in THE FINALS Hacks feels smooth on Customs. The menu took a few minutes to learn. After that, raids felt easy.',
-		short: 'Soft aim in THE FINALS Hacks feels smooth on Customs.',
-		slug: 'finals-soft-aim-review-xkrypt0',
-		seoTitle: 'Soft Aim Review by @xKrypt0_EFT — 5/5 | {brand}',
-		seoDescription: '@xKrypt0_EFT rates {brand} soft aim 5/5 for Customs on Windows PC.',
-		date: '2026-07-24',
-		tag: 'Soft aim',
-	}),
-	reviewMeta({
-		handle: 'buildsR4K',
-		rating: 4,
-		text: 'ESP boxes help on Quick Cash rounds. You can see who is holding a hallway before you push. Still worth the price for THE FINALS Hacks.',
-		short: 'ESP boxes help on Quick Cash rounds. Still worth the price for THE FINALS Hacks.',
-		slug: 'finals-esp-scav-run-review-buildsr4k',
-		seoTitle: 'ESP Review by @buildsR4K — 4/5 | {brand}',
-		seoDescription: '@buildsR4K rates {brand} ESP 4/5 for Quick Cash rounds on Windows PC.',
-		date: '2026-07-19',
-		tag: 'bot run',
-	}),
-	reviewMeta({
-		handle: 'dma_wizard',
-		rating: 5,
-		text: 'I moved to THE FINALS Hacks this wipe. Setup was simple. It stayed up after the last Easy Anti-Cheat update when my old cheat failed. Lifetime was a good buy.',
-		short: 'THE FINALS Hacks stayed up after the last Easy Anti-Cheat update. Lifetime was a good buy.',
-		slug: 'finals-cloud-dma-review-dma-wizard',
-		seoTitle: 'Update Review by @dma_wizard — 5/5 | {brand}',
-		seoDescription: '@dma_wizard rates {brand} 5/5 after a {antiCheat} update on Windows PC.',
-		date: '2026-06-27',
-		tag: 'Updates',
-	}),
-	reviewMeta({
-		handle: 'ctrl_player99',
-		rating: 4,
-		text: 'Soft aim in THE FINALS Hacks is easy to tune on PC. I changed FOV a little and it felt natural. Menu is clear enough.',
-		short: 'Soft aim in THE FINALS Hacks is easy to tune on PC.',
-		slug: 'finals-soft-aim-review-ctrl-player99',
-		seoTitle: 'Soft Aim Review by @ctrl_player99 — 4/5 | {brand}',
-		seoDescription: '@ctrl_player99 rates {brand} soft aim 4/5 on Windows PC.',
-		date: '2026-07-11',
-		tag: 'Soft aim',
-	}),
-	reviewMeta({
-		handle: 'stormChaser_07',
-		rating: 3,
-		text: 'THE FINALS Hacks works well once it is running. First launch was slow because Windows Defender flagged the loader. Support replied in about two hours. ESP on Woods is solid.',
-		short: 'ESP on Woods is solid. Support helped after a slow first launch.',
-		slug: 'finals-cheat-setup-review-stormchaser07',
-		seoTitle: 'Setup Review by @stormChaser_07 — 3/5 | {brand}',
-		seoDescription: '@stormChaser_07 rates {brand} setup 3/5. ESP on Woods is solid after support help.',
-		date: '2026-06-15',
-		tag: 'Setup',
-	}),
-	reviewMeta({
-		handle: 'lootGoblinx',
-		rating: 5,
-		text: 'Loot ESP in THE FINALS Hacks pays for the monthly plan. Extract markers and distance make early raids faster.',
-		short: 'Loot ESP in THE FINALS Hacks pays for the monthly plan.',
-		slug: 'finals-loot-esp-review-lootgoblinx',
-		seoTitle: 'Loot ESP Review by @lootGoblinx — 5/5 | {brand}',
-		seoDescription: '@lootGoblinx rates {brand} loot ESP 5/5 for early raids on Windows PC.',
-		date: '2026-08-01',
-	}),
-	reviewMeta({
-		handle: 'rankedGrind42',
-		rating: 4,
-		text: 'I have used THE FINALS Hacks since last wipe. Soft aim per weapon helps in dorms. Status updates after Easy Anti-Cheat patches could be clearer, but it came back the next day.',
-		short: 'Soft aim per weapon in THE FINALS Hacks helps in dorms.',
-		slug: 'finals-soft-aim-raid-review-rankedgrind42',
-		seoTitle: 'Raid Soft Aim by @rankedGrind42 — 4/5 | {brand}',
-		seoDescription: '@rankedGrind42 rates {brand} soft aim 4/5 for raids on Windows PC.',
-		date: '2026-07-07',
-		tag: 'Raid',
-	}),
-	reviewMeta({
-		handle: 'vanLifeEFT',
-		rating: 5,
-		text: 'Radar in THE FINALS Hacks saved me near cashout zones. Seeing the third party early in duos is huge. Boxes plus radar look clean.',
-		short: 'Radar in THE FINALS Hacks saved me near cashout zones.',
-		slug: 'finals-radar-hack-review-vanlifeeft',
-		seoTitle: 'Radar Review by @vanLifeEFT — 5/5 | {brand}',
-		seoDescription: '@vanLifeEFT rates {brand} radar 5/5 near cashout zones on Windows PC.',
-		date: '2026-07-28',
-		tag: 'Extracts',
-	}),
-	reviewMeta({
-		handle: 'patchDayMike',
-		rating: 4,
-		text: 'Most cheats go down on patch day. THE FINALS Hacks posted on the status page within a few hours and was back the next morning. My old tool left me waiting for days.',
-		short: 'THE FINALS Hacks was back the next morning after a patch.',
-		slug: 'finals-eac-update-review-patchdaymike',
-		seoTitle: 'Status Review by @patchDayMike — 4/5 | {brand}',
-		seoDescription: '@patchDayMike rates {brand} status updates 4/5 after {antiCheat} patches.',
-		date: '2026-06-09',
-		tag: 'Easy Anti-Cheat updates',
-	}),
-	reviewMeta({
-		handle: 'snipezOnly_',
-		rating: 5,
-		text: 'Bolt-action soft aim plus ESP in THE FINALS Hacks is excellent for long shots. Simple and strong.',
-		short: 'Bolt-action soft aim plus ESP in THE FINALS Hacks is excellent.',
-		slug: 'finals-sniper-soft-aim-review-snipezonly',
-		seoTitle: 'Sniper Soft Aim by @snipezOnly_ — 5/5 | {brand}',
-		seoDescription: '@snipezOnly_ rates {brand} sniper soft aim 5/5 with ESP on Windows PC.',
-		date: '2026-08-01',
-	}),
-] as const satisfies readonly CustomerReview[];
+export const customerReviews = customerReviewSeed.map((item) => reviewMeta(item));
 
-export const customerReviewStats = {
-	averageRating: 4.4,
-	totalCount: customerReviews.length,
-} as const;
+export const customerReviewStats = customerReviewGeneratedStats;

@@ -90,7 +90,7 @@ const extraGraph: Record<string, unknown>[] = [
 
 			<header class="reviews-index__head">
 				<div>
-					<h1 data-edit="navReviews">{siteConfig.name} reviews</h1>
+					<h1 data-edit="navReviews">The Finals Hacks reviews</h1>
 					<p class="reviews-index__intro" data-edit="reviewsIntro">{reviewsIntro}</p>
 				</div>
 				<div class="reviews-index__summary" aria-label={`${customerReviewStats.averageRating} out of 5 average rating`}>
@@ -117,7 +117,7 @@ const extraGraph: Record<string, unknown>[] = [
 								</p>
 							</div>
 							{review.tag ? <p class="reviews-index__tag">{review.tag}</p> : null}
-							<p class="reviews-index__text">{review.text}</p>
+							<p class="reviews-index__text">{review.short}</p>
 							<a class="reviews-index__more" href={getReviewPath(review.slug)}>
 								Read full review
 								<svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -347,8 +347,12 @@ const extraGraph: Record<string, unknown>[] = [
 		margin: 0;
 		color: var(--ink-muted);
 		font-size: 0.92rem;
-		line-height: 1.6;
+		line-height: 1.45;
 		flex-grow: 1;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		overflow: hidden;
 	}
 
 	.reviews-index__more {
